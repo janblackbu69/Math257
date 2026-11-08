@@ -1,0 +1,15 @@
+Variable,Definition
+Turnout (%),House votes cast as a share of CVAP
+Democratic two-party share (%),Democratic votes / (Democratic + Republican votes)
+Black share (%),Share of CVAP that is Black
+Hispanic share (%),Share of CVAP that is Hispanic
+Asian share (%),Share of CVAP that is Asian
+Bachelor's degree or higher (%),Share of adults with a bachelor's degree or higher
+"Median household income ($10,000s)","Median household income, in $10,000s"
+Income inequality (Gini index x 100),"Gini index of household income, times 100"
+Age 18-29 (%),Share of CVAP aged 18-29
+Age 65 and over (%),Share of CVAP aged 65 and over
+Female share (%),Share of CVAP that is female
+Population density (log10),log10 of persons per square mile
+Democratic incumbent,1 if a Democratic incumbent ran (open seat = baseline)
+Republican incumbent,1 if a Republican incumbent ran (open seat = baseline)

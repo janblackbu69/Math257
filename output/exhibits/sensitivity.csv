@@ -1,0 +1,14 @@
+Predictor,Pillai (main model),Joint p (main model),Pillai (poverty model),Joint p (poverty model)
+Black share (%),0.152,< 0.001,0.120,< 0.001
+Hispanic share (%),0.076,< 0.001,0.051,< 0.001
+Asian share (%),0.183,< 0.001,0.141,< 0.001
+Bachelor's degree or higher (%),0.228,< 0.001,0.159,< 0.001
+"Median household income ($10,000s)",0.004,0.488,0.004,0.490
+Income inequality (Gini index x 100),0.120,< 0.001,,
+Age 18-29 (%),0.106,< 0.001,0.060,< 0.001
+Age 65 and over (%),0.046,< 0.001,0.031,0.002
+Female share (%),0.016,0.046,0.018,0.032
+Population density (log10),0.091,< 0.001,0.108,< 0.001
+Democratic incumbent,0.135,< 0.001,0.133,< 0.001
+Republican incumbent,0.135,< 0.001,0.136,< 0.001
+Poverty rate (%),,,0.152,< 0.001

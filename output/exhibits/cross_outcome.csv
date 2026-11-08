@@ -1,0 +1,13 @@
+Predictor,Turnout (SD),Dem. share (SD),"F(1, 383)",p
+Black share (%),0.002,0.025,22.5,< 0.001
+Hispanic share (%),-0.007,0.009,28.6,< 0.001
+Asian share (%),-0.049,0.014,78.9,< 0.001
+Bachelor's degree or higher (%),0.061,0.026,19.9,< 0.001
+"Median household income ($10,000s)",0.030,-0.018,1.4,0.231
+Income inequality (Gini index x 100),-0.105,-0.008,29.1,< 0.001
+Age 18-29 (%),-0.086,0.054,45.3,< 0.001
+Age 65 and over (%),0.036,0.037,0.01,0.936
+Female share (%),-0.061,-0.073,0.05,0.819
+Population density (log10),-0.159,0.245,31.9,< 0.001
+Democratic incumbent,-0.018,0.570,25.5,< 0.001
+Republican incumbent,-0.037,-0.551,21.0,< 0.001

@@ -1,0 +1,4 @@
+Outcome,R-squared,Adjusted R-squared,F,p,Pillai's trace
+Turnout (%),0.709,0.700,"F(12, 383) = 77.9",< 0.001,
+Democratic two-party share (%),0.820,0.814,"F(12, 383) = 145.5",< 0.001,
+Both outcomes jointly (Pillai's trace),,,"F(24, 766) = 97.7",< 0.001,1.51

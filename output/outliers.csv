@@ -1,0 +1,11 @@
+District,Mahalanobis D²,Turnout resid.,Dem. share resid.,Note
+OR-3,16.8,-0.62,4.03,Share far above prediction
+FL-27,11.4,3.12,-1.42,Turnout above prediction
+NY-12,9.7,-3.19,0.25,Turnout below prediction
+WI-4,9.0,2.79,1.23,Turnout above prediction
+MO-1,8.7,-0.90,2.77,Share above prediction
+HI-2,8.6,-2.27,1.79,Joint outlier only
+CA-2,8.3,-0.02,2.92,Share above prediction
+OR-5,8.2,0.80,2.77,Share above prediction
+SC-3,7.8,-0.06,-2.78,Share below prediction
+WI-2,7.5,2.41,1.43,Joint outlier only

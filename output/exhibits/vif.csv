@@ -1,0 +1,16 @@
+Predictor,In final model,"VIF, final model","VIF, all income measures"
+Black share (%),Yes,3.3,3.6
+Hispanic share (%),Yes,2.1,2.6
+Asian share (%),Yes,2.0,2.1
+Bachelor's degree or higher (%),Yes,6.3,7.5
+"Median household income ($10,000s)",Yes,6.8,100.8
+Income inequality (Gini index x 100),Yes,2.3,4.9
+Age 18-29 (%),Yes,3.2,3.8
+Age 65 and over (%),Yes,3.9,4.1
+Female share (%),Yes,3.5,3.5
+Population density (log10),Yes,2.9,2.9
+Democratic incumbent,Yes,2.9,2.9
+Republican incumbent,Yes,2.7,2.7
+Low-income households (%),No,,25.5
+High-income households (%),No,,104.0
+Poverty rate (%),No,,27.0

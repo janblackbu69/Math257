@@ -1,0 +1,13 @@
+Variable,Mean,SD,Min,Median,Max
+Turnout (%),62.4,8.7,37.2,63.2,81.1
+Democratic two-party share (%),49.9,15.7,19.6,49.8,88.7
+Black share (%),12.3,13.1,0.3,7.9,65.4
+Hispanic share (%),14.9,16.0,1.0,8.7,86.8
+Asian share (%),5.1,6.8,0.3,2.6,51.4
+Bachelor's degree or higher (%),35.6,11.0,10.2,33.9,80.3
+"Median household income ($10,000s)",8.44,2.19,4.45,7.90,18.22
+Income inequality (Gini index x 100),46.2,2.9,37.2,45.9,58.0
+Age 18-29 (%),20.2,2.9,12.0,19.9,30.8
+Age 65 and over (%),22.1,4.0,11.8,22.1,41.3
+Female share (%),51.2,1.2,47.0,51.2,55.1
+Population density (log10),2.66,0.81,0.11,2.58,4.88

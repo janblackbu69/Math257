@@ -1,0 +1,13 @@
+Predictor,"b, contested (n = 396)","b, all valid (n = 433)",Change
+Black share (%),0.021,0.078,+0.057
+Hispanic share (%),-0.065,-0.052,+0.013
+Asian share (%),-0.426,-0.401,+0.025
+Bachelor's degree or higher (%),0.524,0.572,+0.049
+"Median household income ($10,000s)",0.264,0.023,-0.241
+Income inequality (Gini index x 100),-0.908,-0.991,-0.084
+Age 18-29 (%),-0.745,-0.746,-0.001
+Age 65 and over (%),0.312,0.459,+0.147
+Female share (%),-0.528,-1.265,-0.738
+Population density (log10),-1.374,-0.698,+0.676
+Democratic incumbent,-0.153,-0.814,-0.660
+Republican incumbent,-0.320,-0.948,-0.628
