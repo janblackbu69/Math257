@@ -8,3 +8,8 @@ The data come from three public sources:
   https://www.census.gov/programs-surveys/acs
   https://www.census.gov/data/developers.html
   https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html
+
+- Data_Extraction.R extracts and formats the data storing the data in 'analysis_2024.csv'.
+- Data_Analysis.R performs modeling and generates the exhibits stored in the figures and output folders.
+- Draft reports are stored in Report_Draft_v# for major revisions.
+- Jan_Blackburn_Report_Final_qmd is the final version of the submitted report.
