@@ -3,27 +3,7 @@
 # Code for data staging and cleaning
 # Initial code generated using Claude based on prompts and modified as needed
 
-########### House Cleaning
-
 rm(list=ls())
-
-
-########### Linking census and congressional roster data 
-
-# =============================================================================
-# Math 257 Project 2: build the 2024 House district analysis dataset
-#
-# Output: one row per U.S. House district (435), 119th Congress lines
-#   Outcomes:   turnout (House votes cast / CVAP), dshare (D two-party share)
-#   Predictors: race/ethnicity of CVAP, log density, % bachelor's+, median
-#               household income, % of adults 18-29 and 65+, incumbency
-#
-# Data sources
-#   Local files:  1976-2024-house.xlsx (MIT Election Data + Science Lab)
-#                 Geo_Data.xlsx        (2024 Census Gazetteer, 119th CDs)
-#   tidycensus:   ACS 5-year 2020-2024 detailed tables B01003, B05003 (+ B, D,
-#                 H, I iterations), B15003, B19013, B01001
-# =============================================================================
 
 library(tidyverse)
 library(readxl)
@@ -258,4 +238,3 @@ print(summary(select(analysis, turnout, dshare, log_density, pct_ba,
 
 write_csv(analysis, "analysis_2024.csv")
 
-View(analysis)

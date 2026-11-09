@@ -37,24 +37,22 @@ style_table <- function(df, font_size = 9, scale_down = FALSE) {
 }
 ```
 
-## Introduction
+## Introduction[^repo]
 
 Politics has become far more polarized in this century as demonstrated by the increased frequency in changing party majorities in the House: changing four times in the last 25 years compared to only once in the previous 25 years [@wiki_house_stats].
 
 In light of this increased political volatility, this paper evaluates the congressional district demographic characteristics and their potential association with voting outcomes. The number of votes for a party's candidate can be viewed as a function of two outcomes: the proportion of eligible voters who turn out to vote, and the share of votes cast for each party. To investigate potential drivers of these outcomes, the following research questions are investigated:
 
-- Which district characteristics are associated with turnout and Democratic two-party share, taken together?
+- Which district characteristics are associated with turnout and two-party voter share, taken together?
 - Do thse characteristics impact voter turnout and party share to the same degree?
 
-Much political science research has investigated these questions separately, using univariate regression models, ignoring any correlation between turnout and vote share. To evaluate whether modeling the outcomes jointly provides additional insights, a multivariate regression model is used to estimate the correlation between the two outcomes' errors and to test the joint effect of each predictor on both outcomes, comparing results of the univariate models.
+Political science research has investigated these questions separately, using univariate regression models, ignoring any correlation between turnout and vote share. To evaluate whether modeling the outcomes jointly provides additional insights, a multivariate regression model is used to estimate the correlation between the two outcomes' errors and to test the joint effect of each predictor on both outcomes, comparing results of the univariate models.
 
-The data cover the 2024 House elections, which elected the 119th Congress. Election returns were obtained from the MIT Election Data + Science Lab [@MIT_house], demographic and economic characteristics of each district were obtained from the Census Bureau's American Community Survey (ACS) 5-year estimates (2020–2024) [@census_acs5], and land area from the Census Bureau's 2024 Gazetteer file [@census_gazetteer].
+The data cover the 2024 House elections which elected the 119th Congress. Election returns were obtained from the MIT Election Data + Science Lab [@MIT_house], demographic and economic characteristics of each district were obtained from the Census Bureau's American Community Survey (ACS) 5-year estimates (2020–2024) [@census_acs5], and land area from the Census Bureau's 2024 Gazetteer file [@census_gazetteer].
 
-The results suggest that turnout and voter share (measured as Democratic share) respond differently to district characteristics. The predictors explain most of the variation in turnout (70.9%) and Democratic share (82.0%), and the joint test that no predictor is associated with either outcome is rejected using Pillai's trace (p \< 0.001). Nine of the twelve predictors are associated with the two outcomes by significantly different amounts. The residual correlation between the outcome is near zero so that individual and joint models reach the same conclusion for 11 of 12 predictors (exception is female share). The joint model provides greater insight into how predictor variables have different impacts on turnout and voter share.
+The results suggest that turnout and voter share (baseline defined as Democratic share) respond differently to district characteristics. The predictors explain most of the variation in turnout (70.9%) and Democratic share (82.0%), and the joint test that no predictor is associated with either outcome is rejected using Pillai's trace (p \< 0.001). Nine of the twelve predictors are associated with the two outcomes by significantly different amounts. The residual correlation between the outcome is near zero so that individual and joint models reach the same conclusion for 11 of 12 predictors (exception is female share). The joint model provides greater insight into how predictor variables have different impacts on turnout and voter share.
 
 The remainder of this paper describes the data, summarizes the methods used to model and evaluate the outcomes, presents the results, and concludes with a discussion of their implications and potential follow-on research.
-
-The data and code are publicly available.[^repo]
 
 [^repo]: All R scripts, data and report files are available at
     <https://github.com/janblackbu69/Math257>.
@@ -63,7 +61,7 @@ The data and code are publicly available.[^repo]
 
 The unit of analysis is the congressional district, using the 119th Congress districts from the November 2024 election, in which Democrats gained a net two seats to reach 215 while Republicans retained control with 220 seats [@wiki_house_stats]. The two outcome variables are turnout, calculated as the number of votes cast in the House race divided by the citizen voting-age population (CVAP), and Democratic share, calculated as Democratic votes divided by the sum of Democratic and Republican votes.
 
-The model uses 396 of the 435 districts, excluding 39 uncontested districts in which two-party share is undefined since these districts were uncontested. The predictor variables describe the racial, educational, income, age and gender composition of each district, its population density and the party of the incumbent (see Appendix A for definitions). The non-Hispanic White share is left out because it is nearly a linear combination of the other race shares. Three other economic measures (low-income share, high-income share and poverty rate) are left out due to collinearity with median income. Incumbency comes from 2022 results with 170 Democratic incumbents, 177 Republican incumbents and 49 open seats (baseline). The excluded 39 districts are concentrated in Massachusetts (7 districts), Texas (8 districts) and California (2 districts). No districts were dropped for missing Census data.
+The model uses 396 of the 435 districts, excluding 39 uncontested districts in which two-party share is undefined since these districts were uncontested. The predictor variables describe the racial, educational, income, age and gender composition of each district, its population density and the party of the incumbent (see Appendix A). The non-Hispanic White share is omitted out since it's nearly a linear combination of the other race shares. Three other economic measures (low-income share, high-income share and poverty rate) are left out due to collinearity with median income. Incumbency comes from 2022 results with 170 Democratic incumbents, 177 Republican incumbents and 49 open seats (baseline). Manfy of the excluded 39 districts are mostly concentrated in Massachusetts (7 districts), Texas (8 districts) and California (2 districts). No districts were dropped for missing Census data.
 
 Descriptive statistics are shown in @tbl-descriptives. The correlation between turnout and Democratic share is −0.19, indicating that Democratic districts tend to have lower turnout. The female share varies little across districts (SD = 1.2 percentage points), which gives the model little information with which to detect its effect.
 
@@ -111,13 +109,17 @@ $$
 \end{pmatrix}
 $$ {#eq-mvreg}
 
-Each row of $\mathbf{Y}$ holds one district's turnout and Democratic share, and $\boldsymbol{\varepsilon}_i$ is the $i$th row of $\mathbf{E}$. The coefficient matrix $\mathbf{B}$ has one column per outcome. Because both equations use the same predictors, the estimates are identical to those from the two separate OLS regressions. The joint model adds the error covariance matrix $\boldsymbol{\Sigma}$, which allows a district's turnout and share errors to be correlated and makes possible tests that use both outcomes at once.
+- $\mathbf{Y}$ holds one district's turnout and Democratic share
+- $\boldsymbol{\varepsilon}_i$ is the $i$th row of $\mathbf{E}$. 
+- $\mathbf{B}$ is the coefficient matrix and has one column per outcome. Because both equations use the same predictors, the estimates are identical to those from the two separate OLS regressions. 
+- $\boldsymbol{\epsilon}_k$ is the errors and includes a covariance matrix $\boldsymbol{\Sigma}$, which allows a district's turnout and voter share to be correlated.
+
 
 $\boldsymbol{\Sigma}$ is a 2×2 table describing the errors, the part of each outcome the predictors don’t explain:
 
-$\sigma_T^2$ (top left) is the variance of the turnout errors: how far districts’ actual turnout typically lands from what the model predicts.
-$\sigma_D^2$ (bottom right) is the same thing for Democratic share.
-$\sigma_{TD}$ (both off-diagonal spots) is the covariance between the two errors. It describes whether a district that beats its predicted turnout also tends to beat, or fall short of, its predicted Democratic share. 
+- $\sigma_T^2$ (top left) is the variance of the turnout errors: how far districts’ actual turnout typically lands from what the model predicts.
+- $\sigma_D^2$ (bottom right) is the same thing for Democratic share.
+- $\sigma_{TD}$ (both off-diagonal elements) is the covariance between the two errors. It describes whether a district that beats its predicted turnout also tends to beat, or fall short of, its predicted Democratic share. 
 
 ### Joint significance tests
 
@@ -143,7 +145,7 @@ Multivariate regression requires that the error vectors $\boldsymbol{\varepsilon
 
 **Diagnostic checks:** Plots of residuals against fitted values check that the relationships are linear and that the errors have a similar spread everywhere; a curve or funnel shape signals violations in the constant variation assumption. Normal Q-Q plots of the standardized residuals check whether each outcome’s errors are normal, which they are if the points fall along a straight line. To check whether the two errors are jointly normal, each district’s pair of residuals is reduced to a single number, the squared Mahalanobis distance, which measures how unusual the pair is after accounting for each outcome’s spread and the correlation between them; if the errors are bivariate normal, these distances follow a chi-square distribution with 2 degrees of freedom, so plotting them against that distribution’s quantiles should also follow a straight line. 
 
-**What to expect:** How much the multivariate model adds depends on the residual correlation between the outcomes. If that correlation is weak, the joint tests should give nearly the same answers as the separate tests. The joint test helps most when the correlation runs against the pattern of a predictor’s effects, for example, when a predictor raises both outcomes but their errors are negatively correlated. It can lose power when a predictor affects only one outcome, because it spreads its attention across both.
+**Multivariate vs. Univariate:** How much the multivariate model adds depends on the residual correlation between the outcomes. If that correlation is weak, the joint model should give nearly the same answers as the separate models. The joint model helps most when the correlation runs against the pattern of a predictor’s effects, for example, when a predictor raises both outcomes but their errors are negatively correlated. It can lose power when a predictor affects only one outcome, because it spreads its attention across both.
 
 All analysis was done in R [@R_core] with the tidyverse [@tidyverse], car [@car], sandwich [@sandwich], lmtest [@lmtest] and broom [@broom] packages, and tables were formatted with kableExtra [@kableExtra].
 
@@ -166,7 +168,7 @@ The joint and separate tests reach the same conclusion for 11 of the 12 predicto
 
 ### Cross-outcome tests
 
-Having identified which predictors are jointly significant, the hypothesis tested is whether each predictor is associated with turnout and Democratic share by the same amount or not. @tbl-outcome-test summarizes the results on the standardized outcomes. Nine of the twelve predictors have significantly different effects on the two outcomes (p \< 0.001), while the effects of median income, the 65-and-over share and the female share are not significantly different. Four predictors (Hispanic share, Asian share, the 18–29 share and population density) are significantly associated with both outcomes, but in opposite directions.
+Having identified which predictors are jointly significant, the next hypothesis tested is whether each predictor is associated with turnout and voter Democratic share by the same amount (null hypothesis) or not. @tbl-outcome-test summarizes the results on the standardized outcomes. Nine of the twelve predictors have significantly different effects on the two outcomes (p \< 0.001) showing clear rejection of the null hypothesis, while the effects of median income, the 65-and-over share and the female share are not significantly different. Four predictors (Hispanic share, Asian share, the 18–29 share and population density) are significantly associated with both outcomes, but in opposite directions.
 
 ### Model diagnostics
 
@@ -183,11 +185,11 @@ style_table(cross)
 
 ## Discussion
 
-The main finding of the analysis is that turnout and Democratic share respond differently to district characteristics. Democratic share is associated with race, density, age and incumbency, while turnout is associated with education, inequality, and the Asian and young-adult shares of the electorate. Only education strongly raises both. Several predictors pull the two outcomes in opposite directions. Denser, younger and more Asian districts vote more Democratic but have lower turnout. This helps explain the negative correlation between turnout and Democratic share (−0.19): it is a product of where Democratic-leaning groups live, not a direct link between the outcomes.
+The primary finding of the analysis is that turnout and Democratic share respond differently to district characteristics. Democratic share is associated with race, density, age and incumbency, while turnout is associated with education, inequality, and the Asian and young-adult shares of the electorate. Only education strongly raises both. Several predictors pull the two outcomes in opposite directions. Denser, younger and more Asian districts vote more Democratic but have lower turnout. This helps explain the negative correlation between turnout and Democratic share (−0.19): it is a product of where Democratic-leaning groups live, not a direct link between the outcomes.
 
 For these data, the multivariate model added little to the significance tests. Because the residual correlation between turnout and Democratic share is nearly zero (r = 0.05), the joint tests gave almost the same answers as the separate regressions, changing the conclusion only for the weak female-share effect. That is itself an answer to the project’s question: when the outcomes’ unexplained parts are essentially unrelated, a multivariate model offers little benefit for testing which predictors matter. The joint model was still valuable for the cross-outcome tests, testing whether a predictor's effects on turnout and share are equal or not. 
 
-The results have several limitations. The ACS data are 2020–2024 estimated averages with sampling error measured at the district level rather than for individual voters. For example, the finding that districts with more college graduates have higher turnout does not show that college graduates themselves are more likely to vote. This period also includes the pandemic, which may have affected the averages. The model also omits key variables, such as prior partisanship and district unemployment rates, which could improve its explanatory power. A final limitation is the districts in the same state are likely to have related errors since they share the same election rules which can result in clustered errors, resulting in standard errors and p-values that are too small.
+The results have several limitations. The ACS data are 2020–2024 estimated averages with sampling error measured at the district level rather than for individual voters. For example, the finding that districts with more college graduates have higher turnout does not show that college graduates themselves are more likely to vote, only that there is a correlation between the number of college graduates and voter turnout. This period also includes the pandemic, which may have affected the averages. The model also omits key variables, such as prior partisanship and district unemployment rates, which could improve its explanatory power. A final limitation is the districts in the same state are likely to have related errors since they share the same election rules which can result in clustered errors, resulting in standard errors and p-values that are too small.
 
 Future research could add measures the model lacks, such as prior partisan vote and unemployment rates, adjust the Pillai tests for within-state correlation (for example, by resampling whole states in a bootstrap), or repeat the analysis for other election years to see whether the patterns hold.
 

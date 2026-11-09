@@ -3,15 +3,7 @@
 # Data analysis file: reads the analysis data set and produces every table,
 # figure and number used in Report_Draft_v3.qmd
 # Initial code was generated using Claude and was modified by me as needed
-#
-# Outcomes (per House district, 2024): turnout and Democratic two-party share
-#
-# Input:   analysis_2024.csv        (from build_analysis_data.R)
-# Output:  output/exhibits/*.csv    the report's three tables, formatted
-#          output/*.csv             unformatted results behind the tables and text
-#          figures/*.png            the report's three Appendix B figures
-#          console                  the other numbers quoted in the report text
-#
+
 # Steps
 #   1. Prepare the modeling sample
 #   2. Descriptives and the collinearity check behind the excluded measures
@@ -36,10 +28,6 @@ dir.create("figures", showWarnings = FALSE)
 # -----------------------------------------------------------------------------
 # 1. Prepare the modeling sample
 # -----------------------------------------------------------------------------
-# Shares are rescaled from proportions (0-1) to percentage points (0-100) so a
-# coefficient reads as "points of outcome per 1 point of predictor". The Gini
-# index is rescaled the same way: one unit = 0.01 of the index.
-# key is read as text so codes like "0101" keep their leading zero.
 
 analysis <- read_csv("analysis_2024.csv", show_col_types = FALSE,
                      col_types = cols(key = col_character(), state_po = col_character(),
@@ -55,9 +43,6 @@ model_data <- analysis %>%
   mutate(z_turnout = as.numeric(scale(turnout)),  # standardized outcomes for
          z_dshare  = as.numeric(scale(dshare)))   # the cross-outcome tests
 
-# Open seats are the incumbency baseline. pct_white_nh is left out because it
-# is nearly a linear combination of the other race shares; the three income
-# measures below are left out for collinearity with median income (step 2).
 predictors <- c("pct_black", "pct_hisp", "pct_asian", "pct_ba", "inc_10k",
                 "pct_18_29", "pct_65plus", "log_density", "gini", "pct_female",
                 "inc_dem", "inc_rep")
@@ -114,9 +99,6 @@ incumbency_counts <- model_data %>%
 
 outcome_cor <- cor(model_data$turnout, model_data$dshare)
 
-# Supports the Section 2 statement that the three income measures were left
-# out: with them added, VIFs climb well past 10.
-# VIF depends only on the predictors, so one model covers both outcomes.
 vif_table <- tibble(predictor = predictors,
                     vif = unname(vif(lm(f_turnout, data = model_data))))
 
@@ -134,8 +116,6 @@ fit_turnout <- lm(f_turnout, data = model_data)
 fit_dshare  <- lm(f_dshare,  data = model_data)
 fit_mv      <- lm(f_mv,      data = model_data)
 
-# Section 3.2: with the same predictors in both equations, the multivariate
-# coefficients are identical to the separate OLS coefficients.
 stopifnot(isTRUE(all.equal(unname(coef(fit_mv)[, "turnout"]), unname(coef(fit_turnout)))),
           isTRUE(all.equal(unname(coef(fit_mv)[, "dshare"]),  unname(coef(fit_dshare)))))
 
@@ -257,9 +237,6 @@ ggsave("figures/qq_mahalanobis.png", p_mahal, width = 5, height = 4, dpi = 300)
 # -----------------------------------------------------------------------------
 # 8. Report tables
 # -----------------------------------------------------------------------------
-# Rows in report order, plain-English names, numbers formatted as text. The
-# column names are the report's column headers; Quarto reads them with
-# check.names = FALSE and passes them straight to kable().
 
 fmt_p    <- function(p) ifelse(p < 0.001, "< 0.001", sprintf("%.3f", p))
 fmt_b_se <- function(b, se) sprintf("%.3f (%.3f)", b, se)
@@ -316,9 +293,6 @@ write_csv(cross_outcome,   "output/cross_outcome_tests.csv")
 # -----------------------------------------------------------------------------
 # 9. Numbers quoted in the report text
 # -----------------------------------------------------------------------------
-# The report types these numbers into the prose; check them here after any
-# change to the data or model.
-
 pct <- function(x) sprintf("%.1f%%", 100 * x)
 fit_line <- function(o) {
   g <- uni_fit %>% filter(outcome == o)

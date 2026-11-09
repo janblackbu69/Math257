@@ -1,13 +1,13 @@
-Predictor,Turnout p,Dem. share p,Significant separately (Bonferroni 0.025),Joint p,Significant jointly (0.05),Agreement
-Black share (%),0.528,< 0.001,Yes,< 0.001,Yes,Both significant
-Hispanic share (%),0.003,< 0.001,Yes,< 0.001,Yes,Both significant
-Asian share (%),< 0.001,0.002,Yes,< 0.001,Yes,Both significant
-Bachelor's degree or higher (%),< 0.001,< 0.001,Yes,< 0.001,Yes,Both significant
-"Median household income ($10,000s)",0.352,0.481,No,0.488,No,Neither significant
-Income inequality (Gini index x 100),< 0.001,0.500,Yes,< 0.001,Yes,Both significant
-Age 18-29 (%),< 0.001,< 0.001,Yes,< 0.001,Yes,Both significant
-Age 65 and over (%),0.008,< 0.001,Yes,< 0.001,Yes,Both significant
-Female share (%),0.164,0.033,No,0.046,Yes,Joint only
-Population density (log10),0.006,< 0.001,Yes,< 0.001,Yes,Both significant
-Democratic incumbent,0.851,< 0.001,Yes,< 0.001,Yes,Both significant
-Republican incumbent,0.683,< 0.001,Yes,< 0.001,Yes,Both significant
+term,p_turnout,p_dshare,pillai,p_pillai,sig_any_uni_bonf,sig_mv,agreement
+pct_black,0.5281348275280634,2.155516084730243e-15,0.15173707750644605,2.2352315959219508e-14,TRUE,TRUE,Both significant
+pct_hisp,0.0026665743798223417,6.3293448029903435e-6,0.0764114136908562,2.549203109351222e-7,TRUE,TRUE,Both significant
+pct_asian,3.573711545083658e-16,0.001760215947297905,0.18289907741321335,1.7565433175613788e-17,TRUE,TRUE,Both significant
+pct_ba,1.2365143963481205e-19,4.111791723818217e-7,0.22841690223006889,3.0909838994428074e-22,TRUE,TRUE,Both significant
+inc_10k,0.3522046571485107,0.48096819748086794,0.003745703206468658,0.48832575714792226,FALSE,FALSE,Neither significant
+pct_18_29,4.4088875926128714e-7,5.7602932781647335e-5,0.10584165300686166,5.249973310155649e-10,TRUE,TRUE,Both significant
+pct_65plus,0.007842817012556687,4.7677309236835125e-4,0.04632226223606439,1.1633600648480281e-4,TRUE,TRUE,Both significant
+log_density,0.0063046637866806254,1.1899181604898857e-7,0.09107276195313208,1.1996694003036775e-8,TRUE,TRUE,Both significant
+gini,2.8996648946518825e-12,0.5001621917487624,0.11984151625576464,2.5770804347883406e-11,TRUE,TRUE,Both significant
+pct_female,0.16357802698408255,0.03332100586959705,0.015950329438928858,0.0463714712146373,FALSE,TRUE,Joint only
+inc_dem,0.8506357429507566,1.1335205526981973e-13,0.13491381271959366,9.513518127061027e-13,TRUE,TRUE,Both significant
+inc_rep,0.6831766953196405,8.732666423081915e-14,0.13536215046749886,8.616688363545825e-13,TRUE,TRUE,Both significant
